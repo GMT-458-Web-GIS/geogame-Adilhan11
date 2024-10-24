@@ -5,3 +5,7 @@
 Here is my layout frontend of the GeoGame Project.
 
 ![GeoGame Layout](layout_frontend.png) 
+
+# Requirements
+
+For now I will only use Leaflet. 
