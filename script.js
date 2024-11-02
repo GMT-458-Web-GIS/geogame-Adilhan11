@@ -1,15 +1,11 @@
-
 const map = L.map('map').setView([39.9334, 32.8597], 6);
-
-
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
 }).addTo(map);
 
-
-const cities = [ 
+const cities = [
     { name: "Adana", lat: 37.0, lon: 35.3213 },
     { name: "Adıyaman", lat: 37.7648, lon: 38.2786 },
     { name: "Afyonkarahisar", lat: 38.7638, lon: 30.5403 },
@@ -93,14 +89,13 @@ const cities = [
     { name: "Zonguldak", lat: 41.4543, lon: 31.7987 },
 ];
 
-
 let currentCityIndex = 0;
 let marker;
 let score = 0;
 let skipped = 0;
 let timeLeft = 60;
 let timer;
-let greenMarkers = []; 
+let greenMarkers = [];
 
 const cityInput = document.getElementById("city-input");
 const submitBtn = document.getElementById("submit-btn");
@@ -110,7 +105,6 @@ const scoreDisplay = document.getElementById("score");
 const skippedDisplay = document.getElementById("skipped");
 const timerDisplay = document.getElementById("timer");
 const messageDisplay = document.getElementById("message");
-
 
 function addGreenMarker(city) {
     const greenIcon = L.icon({
@@ -163,7 +157,6 @@ function endGame() {
     clearInterval(timer);
     messageDisplay.textContent = `Time's up! Your final score is: ${score}, Skipped: ${skipped}`;
 
-    
     greenMarkers.forEach(marker => {
         map.removeLayer(marker);
     });
@@ -175,6 +168,20 @@ function endGame() {
     restartBtn.style.display = "inline-block";
 }
 
+function correctGuess() {
+    document.body.style.backgroundColor = 'green'; 
+    setTimeout(() => {
+        document.body.style.backgroundColor = '#2c2c2c'; 
+    }, 1000); 
+}
+
+function wrongGuess() {
+    document.body.style.backgroundColor = 'red'; 
+    setTimeout(() => {
+        document.body.style.backgroundColor = '#2c2c2c'; 
+    }, 1000); 
+}
+
 submitBtn.addEventListener("click", function () {
     const guess = cityInput.value.trim().toLowerCase();
     const currentCity = cities[currentCityIndex].name.toLowerCase();
@@ -182,11 +189,13 @@ submitBtn.addEventListener("click", function () {
     if (guess === currentCity) {
         updateScore();
         addGreenMarker(cities[currentCityIndex]); 
+        correctGuess(); 
         currentCityIndex = Math.floor(Math.random() * cities.length);
         placeMarker(cities[currentCityIndex]);
         cityInput.value = "";
         messageDisplay.textContent = "Correct! Keep going!";
     } else {
+        wrongGuess(); 
         messageDisplay.textContent = "Wrong! Try again.";
     }
 });
@@ -217,3 +226,4 @@ restartBtn.addEventListener("click", function () {
 // Start the game initially
 startGame();
 timer = setInterval(updateTimer, 1000);
+
