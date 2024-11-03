@@ -8,4 +8,7 @@ Here is my layout frontend of the GeoGame Project.
 
 # Requirements
 
-For now I will only use Leaflet. 
+I will only use Leaflet for main library.
+HTML files for views
+CSS files for design
+JS files for effect 
