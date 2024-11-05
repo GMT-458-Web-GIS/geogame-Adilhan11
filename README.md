@@ -2,7 +2,7 @@
 
 # GeoGame
 
-Here is my layout frontend of the GeoGame Project.
+Here is my layout  of the GeoGame Project.
 
 ![GeoGame Layout](layout_frontend.png) 
 
@@ -12,3 +12,16 @@ Here is my layout frontend of the GeoGame Project.
 - HTML files for views.
 - CSS files for design.
 - JS files for effect , time and marker detail.
+
+## Layout Elements
+- Title of the game.
+- Map from leaflet.js.
+- Time Tracker.
+- Score Tracker.
+- City input area with submit , pass and restart button.
+
+## Features
+- Case compatible input.
+- Incorrect and correct answer coloring.
+- Marker change depending on the correct answer.
+- Flexible map.
