@@ -92,6 +92,7 @@ const cities = [
 let currentCityIndex = 0;
 let marker;
 let score = 0;
+let totalScore = 0;
 let skipped = 0;
 let timeLeft = 60;
 let timer;
@@ -133,15 +134,17 @@ function startGame() {
     placeMarker(cities[currentCityIndex]);
     cityInput.value = "";
     messageDisplay.textContent = "";
+    
 }
 
 function updateScore() {
-    score++;
+    score += 10;
     scoreDisplay.textContent = score;
 }
 
 function updateSkipped() {
     skipped++;
+    score -= 2;
     skippedDisplay.textContent = skipped;
 }
 
@@ -154,8 +157,9 @@ function updateTimer() {
 }
 
 function endGame() {
+    totalScore = score - (skipped * 2);
     clearInterval(timer);
-    messageDisplay.textContent = `Time's up! Your final score is: ${score}, Skipped: ${skipped}`;
+    messageDisplay.textContent = `Time's up! Your total score is: ${totalScore}`;
 
     greenMarkers.forEach(marker => {
         map.removeLayer(marker);
@@ -223,7 +227,34 @@ restartBtn.addEventListener("click", function () {
     timer = setInterval(updateTimer, 1000);
 });
 
-// Start the game initially
-startGame();
-timer = setInterval(updateTimer, 1000);
+// Rules modal functionality
+const rulesBtn = document.getElementById("rules-btn");
+const rulesModal = document.getElementById("rules-modal");
+const closeBtn = document.querySelector(".close");
 
+rulesBtn.addEventListener("click", () => {
+    rulesModal.style.display = "block";
+});
+
+closeBtn.addEventListener("click", () => {
+    rulesModal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+    if (event.target == rulesModal) {
+        rulesModal.style.display = "none";
+    }
+});
+
+// Start Game button functionality
+const startBtn = document.getElementById("start-btn");
+
+startBtn.addEventListener("click", function () {
+    startBtn.style.display = "none"; // Hide Start Game button after click
+    restartBtn.style.display = "none"; // Ensure Restart button is hidden at start
+    cityInput.disabled = false;
+    submitBtn.disabled = false;
+    passBtn.disabled = false;
+    startGame(); // Start the game
+    timer = setInterval(updateTimer, 1000); // Start timer
+});
