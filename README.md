@@ -19,9 +19,11 @@ Here is my layout  of the GeoGame Project.
 - Time Tracker.
 - Score Tracker.
 - City input area with submit , pass and restart button.
+- Game Rules , Start Game button
 
 ## Features
 - Case compatible input.
 - Incorrect and correct answer coloring.
 - Marker change depending on the correct answer.
 - Flexible map.
+- Total Score taker
