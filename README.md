@@ -58,4 +58,4 @@ Here is my layout of the GeoGame Project.
   - Time-constrained gameplay to enhance challenge and excitement.
  
 ## Live Demo
-- Play the GeoGame here: [GeoGame GitHub Pages](https://your-github-username.github.io/GeoGame/)
+- Play the GeoGame here: [Click here for playing](https://gmt-458-web-gis.github.io/geogame-Adilhan11/)
