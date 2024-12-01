@@ -26,6 +26,7 @@ Here is my layout of the GeoGame Project.
 - Marker change depending on the correct answer.
 - Flexible map.
 - Total score tracker.
+- If completed the one region get +1 minutes
 
 ## Advanced JavaScript Library
 - **Leaflet.js** is used to provide interactive maps and manage city markers. It allows dynamic map rendering and user interaction in real-time.
@@ -50,6 +51,7 @@ Here is my layout of the GeoGame Project.
   - Displaying the score and remaining time.
   - Changing the background color based on user answers.
   - Updating the map marker positions.
+  - If the users can completed the one region get +1 minutes
 
 ## Interactivity and Complexity
 - The game incorporates:
