@@ -36,6 +36,8 @@ Here is my layout of the GeoGame Project.
 
 
 ## Event Handlers
+- Event handlers allow the game to react instantly to user interactions. They provide feedback on correct or incorrect predictions with input controls, and let the user control the flow of the game with buttons such as “Pass” and “Restart”. They also dynamically update the score, timer and map markers, supporting an interactive and user-friendly experience.
+
 1. **Input Submission Handler:** This event listens for the submission of city names and checks if the input matches the correct city. It updates the score and visual feedback (green/red background flash) accordingly.
 ```javascript
     submitBtn.addEventListener("click", function () {
@@ -108,7 +110,8 @@ restartBtn.addEventListener("click", function () {
 });
 ```
 ## Use of Closures
-- Closures are utilized to maintain the state of the game (e.g., score, current city, and remaining time). For instance, the timer function retains access to the time variable, even after the game starts, ensuring accurate countdown functionality.
+- In JavaScript, closures allow a function to maintain access to variables in the context in which it is defined. This is particularly useful in game development to manage game state (e.g. score, current city, time remaining). For example, a counter function can increment its own counter even after the external function has completed, thanks to closure. This ensures the correct functioning of in-game counters and timers.
+
   - Timer Function
  ```javascript
 function updateTimer() {
@@ -164,6 +167,7 @@ function checkIfRegionCompleted() {
 - Interaction URL: https://chatgpt.com/share/6755d547-31b8-8004-b6c0-29bcde8f40cd 
 
 ## DOM Interaction
+- Using the DOM, the game provides real-time updates, ensuring accurate game state visualization and immediate feedback. This enhances interactivity, simplifies navigation, and creates a seamless user experience.
 - The DOM is manipulated to dynamically update game elements such as:
   - Displaying the score and remaining time.
   ```javascript
