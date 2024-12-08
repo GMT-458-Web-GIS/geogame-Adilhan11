@@ -44,7 +44,7 @@ Here is my layout of the GeoGame Project.
   - How to efficiently manage event listeners.
   - Techniques to simplify the DOM interaction.
   - Best practices for using closures in game logic.
-- Interaction URL: ... 
+- Interaction URL: https://chatgpt.com/share/6755d547-31b8-8004-b6c0-29bcde8f40cd 
 
 ## DOM Interaction
 - The DOM is manipulated to dynamically update game elements such as:
