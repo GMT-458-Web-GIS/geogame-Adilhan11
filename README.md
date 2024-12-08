@@ -109,19 +109,52 @@ restartBtn.addEventListener("click", function () {
 ```
 ## Use of Closures
 - Closures are utilized to maintain the state of the game (e.g., score, current city, and remaining time). For instance, the timer function retains access to the time variable, even after the game starts, ensuring accurate countdown functionality.
-```javascript
-let timeLeft = 60;
-
+  - Timer Function
+ ```javascript
 function updateTimer() {
-    // updateTimer fonksiyonu timeLeft değişkenine direkt olarak erişebilir.
-    // Bu, fonksiyonun "timeLeft" değişkenini bir kapanış (closure) yoluyla tutmasını sağlar.
-    timeLeft--;
-    timerDisplay.textContent = timeLeft;
+    timeLeft--; // Dıştaki timeLeft değişkenine erişim: closure
+    timerDisplay.textContent = timeLeft; // DOM'da kalan zamanı günceller
     if (timeLeft <= 0) {
-        endGame();
+        endGame(); // Dıştaki endGame fonksiyonuna erişim: closure
     }
 }
-timer = setInterval(updateTimer, 1000);                            
+```
+  - Submit Event Handler
+ ```javascript
+submitBtn.addEventListener("click", function () {
+    const guess = cityInput.value.trim().toLowerCase(); // cityInput: dıştaki DOM elemanı
+    const currentCity = availableCities[currentCityIndex].name.toLowerCase(); // availableCities: dıştaki oyun durumu
+
+    if (guess === currentCity) {
+        updateScore(); // Closure ile updateScore fonksiyonuna erişim
+        availableCities.splice(currentCityIndex, 1); // Closure ile availableCities değişkenine erişim
+        checkIfRegionCompleted(); // Closure ile başka bir fonksiyona erişim
+    }
+});
+```
+  - Pass Event Handler
+ ```javascript
+passBtn.addEventListener("click", function () {
+    updateSkipped(); // Closure ile dıştaki updateSkipped fonksiyonuna erişim
+    availableCities.splice(currentCityIndex, 1); // Closure ile availableCities’e erişim
+
+    if (availableCities.length > 0) {
+        currentCityIndex = Math.floor(Math.random() * availableCities.length);
+        placeMarker(availableCities[currentCityIndex]); // Closure ile placeMarker fonksiyonuna erişim
+    } else {
+        endGame(); // Closure ile endGame fonksiyonuna erişim
+    }
+});
+```
+  - Region Check
+ ```javascript
+function checkIfRegionCompleted() {
+    if (availableCities.length === 0) { // Closure ile availableCities erişimi
+        timeLeft += 60; // Closure ile timeLeft değişkenine erişim
+        currentRegionIndex++; // Closure ile currentRegionIndex erişimi
+        startGame(); // Closure ile startGame fonksiyonuna erişim
+    }
+}
 ```
 ## Lessons Learned from AI
 - I consulted AI tools such as ChatGPT and Gemini to refine my JavaScript knowledge. Specifically, I learned:
